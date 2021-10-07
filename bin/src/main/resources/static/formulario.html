@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Nova Tarefa</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
+
+</head>
+
+<body background="FF0000">
+
+
+
+    <div class="container">
+        <div class="box">
+
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Titulo</label>
+                    <input type="email" class="form-control" id="titulo" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Responsável</label>
+                    <select class="form-select" id="responsavel">
+                        <option value="MARCOS">Marcos</option>
+                        <option value="MARIA">Maria</option>
+                        <option value="ANA">Ana</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Prioridade</label>
+                    <select class="form-select" id="prioridade">
+                        <option value="BAIXA">Baixa</option>
+                        <option value="MEDIA">Média</option>
+                        <option value="ALTA">Alta</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label">Deadline</label>
+                    <br>
+                    <input id="data" type="date" value="2017-06-07">
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea class="form-control" id="descricao" rows="3"></textarea>
+                </div>
+
+                <div id="divBtnCadastrar">
+
+                    <button type="button" class="btn btn-info" id="cadastrar">Cadastrar</button>
+
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#cadastrar").click(function () {
+
+
+                const dadosForm = {
+                    titulo: document.getElementById('titulo').value,
+                    descricao: document.getElementById('descricao').value,
+                    data: document.getElementById('data').value,
+                    responsavel: document.getElementById('responsavel').value,
+                    prioridade: document.getElementById('prioridade').value,
+                };
+
+                var urlStr = "cadastrar";
+
+                $.ajax({
+
+                    url: urlStr,
+                    type: "post",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(dadosForm),
+
+                    success: function (data) {
+
+
+                        alert("Tarefa Cadastrada com Sucesso!")
+
+
+                    },
+
+                    error: function (erro) {
+                        console.log(erro);
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

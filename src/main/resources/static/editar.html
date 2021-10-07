@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Editar Tarefa</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        
+</head>
+
+<body background="FF0000">
+
+
+    <div id="divTopo">
+
+        <form>
+            <div class="form-group">
+
+                <input type="number" class="form-control" id="numero" placeholder="Digite o número da sua tarefa">
+            </div>
+            <button type="button" class="btn btn-primary" id="btnBuscar">Buscar</button>
+        </form>
+
+    </div>
+
+
+    <div class="container">
+        <div class="box">
+
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Titulo</label>
+                    <input type="text" class="form-control" id="titulo">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Responsável</label>
+                    <select class="form-select" id="responsavel">
+                        <option value="MARCOS">Marcos</option>
+                        <option value="MARIA">Maria</option>
+                        <option value="ANA">Ana</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Prioridade</label>
+                    <select class="form-select" id="prioridade">
+                        <option value="BAIXA">Baixa</option>
+                        <option value="MEDIA">Média</option>
+                        <option value="ALTA">Alta</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label">Deadline</label>
+                    <br>
+                    <input id="data" type="date" value="2017-06-07">
+                </div>
+    
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea class="form-control" id="descricao" rows="3"></textarea>
+                </div>
+
+                <div id="divBtnCadastrar">
+
+                    <button type="button" class="btn btn-info" id="atualizar">Atualizar</button>
+
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <style>
+
+
+.container {
+    width          : 100vw;
+    height         : 100vh;
+    background     : #ffffff;
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+}
+
+.boxNovaTarefa {
+    width       : 256px;
+    height      : 256px;
+    margin-right: 50px;
+}
+
+.boxListagemTarefas {
+    width : 256px;
+    height: 256px;
+}
+
+body {
+    margin: 0px;
+}
+
+#btnNovaTarefa {
+    background-color: transparent;
+    width           : 256px;
+    height          : 256px;
+    border-style    : solid;
+    background-image: url(novatarefa.png);
+    border-radius   : 10px;
+    border-style    : outset;
+}
+
+#btnListarTarefas {
+
+    background-color: transparent;
+    width           : 256px;
+    height          : 256px;
+    border-style    : solid;
+    background-image: url(listar.png);
+    border-radius   : 10px;
+    border-style    : outset;
+
+}
+
+p {
+    text-align: center;
+}
+
+
+.containerLogo {
+    margin-top     : -200px;
+    margin-bottom  : -400px;
+    width          : 100vw;
+    height         : 100vh;
+    background     : #ffffff;
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+}
+
+.box {
+    width       : 600px;
+    height      : 650px;
+    background  : #ffffff;
+    border-style: outset;
+    border-radius: 20px;;
+    border-color: gray;
+    
+    
+}
+
+#divBtnCadastrar{
+    margin-top: 50px;
+    text-align: center;
+}
+
+label{
+    margin-top: 20px;
+}
+
+#divTopo {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+
+        #numero {
+            width: 300px;
+            margin: 30px;
+        }
+    </style>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#btnBuscar").click(function () {
+
+                var numero = $("#numero").val();
+
+                localStorage.setItem('numero', numero)
+
+                var urlStr = "findById/"+numero;
+
+                $.ajax({
+
+                    url: urlStr,
+                    type: "get",
+                    contentType: 'application/json',
+                    dataType: "json",
+
+                    success: function (data) {
+
+                        $("#titulo").val(data.titulo);
+                        $("#responsavel").val(data.responsavel);
+                        $("#prioridade").val(data.prioridade);
+                        $("#data").val(data.data);
+                        $("#descricao").val(data.descricao);
+                        
+
+                    },
+
+                    error: function (erro) {
+                        alert(erro)
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#atualizar").click(function () {
+
+            let numero = localStorage.getItem('numero');
+
+            const dadosForm = {
+                id: numero,
+                titulo: document.getElementById('titulo').value,
+                descricao: document.getElementById('descricao').value,
+                data: document.getElementById('data').value,
+                responsavel: document.getElementById('responsavel').value,
+                prioridade: document.getElementById('prioridade').value,
+            };
+
+            
+
+            var urlStr = "atualizar";
+
+            $.ajax({
+
+                url: urlStr,
+                type: "put",
+                contentType: 'application/json',
+                dataType: "json",
+                data: JSON.stringify(dadosForm),
+
+                success: function (data) {
+
+
+                    alert("Tarefa atualizada com Sucesso!")
+
+
+                },
+
+                error: function (erro) {
+                    console.log(erro);
+                }
+
+            });
+
+        });
+
+    });
+</script>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

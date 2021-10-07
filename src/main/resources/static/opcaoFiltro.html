@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Opção de Filtro</title>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <img src="logo.png" alt="some text" id="imgLogo">
+
+  <div id="divTopo">
+
+    
+  <label>Selecione o tipo de filtro</label>
+  <select id="meuSelect">
+    <option value="filtroNumero.html">Número</option>
+    <option value="filtroTitulo.html">Titulo</option>
+    <option value="filtroDescricao.html">Descrição</option>
+    <option value="filtroSituacao.html">Situação</option>
+    <option value="filtroResponsavel.html">Responsavel</option>
+  </select>
+
+
+  </div>
+
+
+
+  <style>
+    #divTopo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+</style>
+
+  <script>
+
+var select = document.querySelector('#meuSelect')
+
+    select.addEventListener('change', function () {
+      var valor = this.value;
+      window.location.href = valor;
+
+    });
+  </script>
+
+</body>
+
+</html>

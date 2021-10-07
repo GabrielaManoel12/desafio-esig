@@ -1,0 +1,83 @@
+.container {
+    width          : 100vw;
+    height         : 100vh;
+    background     : #ffffff;
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+}
+
+.boxNovaTarefa {
+    width       : 256px;
+    height      : 256px;
+    margin-right: 50px;
+}
+
+.boxListagemTarefas {
+    width : 256px;
+    height: 256px;
+}
+
+body {
+    margin: 0px;
+}
+
+#btnNovaTarefa {
+    background-color: transparent;
+    width           : 256px;
+    height          : 256px;
+    border-style    : solid;
+    background-image: url(novatarefa.png);
+    border-radius   : 10px;
+    border-style    : outset;
+}
+
+#btnListarTarefas {
+
+    background-color: transparent;
+    width           : 256px;
+    height          : 256px;
+    border-style    : solid;
+    background-image: url(listar.png);
+    border-radius   : 10px;
+    border-style    : outset;
+
+}
+
+p {
+    text-align: center;
+}
+
+
+.containerLogo {
+    margin-top     : -200px;
+    margin-bottom  : -400px;
+    width          : 100vw;
+    height         : 100vh;
+    background     : #ffffff;
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+}
+
+.box {
+    width       : 600px;
+    height      : 650px;
+    background  : #ffffff;
+    border-style: outset;
+    border-radius: 20px;;
+    border-color: gray;
+    
+    
+}
+
+#divBtnCadastrar{
+    margin-top: 50px;
+    text-align: center;
+}
+
+label{
+    margin-top: 20px;
+}
